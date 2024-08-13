@@ -52,11 +52,17 @@ app.get("/", (req, res) => {
 const { bookingRouter } = require("./routes/booking.Route.js");
 app.use("/booking", bookingRouter);
 
+const { Discrict } = require("./routes/Discrict.Route.js");
+app.use("/Discrict", Discrict);
+
 const { venue_type } = require("./routes/venue_type.Route.js");
 app.use("/venue_type", venue_type);
 
 const { adminRouter } = require("./routes/Admin.Route.js");
 app.use("/adminRouter", adminRouter);
+
+const { RegionRouter } = require("./routes/region.Route.js");
+app.use("/RegionRouter", RegionRouter);
 
 const { cartRouter } = require("./routes/cart.Route.js");
 app.use("/cartRouter", cartRouter);

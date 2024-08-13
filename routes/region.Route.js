@@ -5,22 +5,22 @@ const {
     getRegion,
     getRegionById,
     updateRegion,
-} = require("../Region/region.Controller");
+} = require("../Region/region.Controller.js")
 
 /**
  * @swagger
  * tags:
- *   name: Admin
- *   description: API endpoints for managing admins
+ *   name: Region
+ *   description: API endpoints for managing Regions
  */
 
 /**
  * @swagger
  * /RegionRouter/createRegion:
  *   post:
- *     summary: Create a new admin
- *     tags: [Admin]
- *     description: Create a new admin with the provided details
+ *     summary: Create a new Region
+ *     tags: [Region]
+ *     description: Create a new Region with the provided details
  *     requestBody:
  *       required: true
  *       content:
@@ -29,17 +29,11 @@ const {
  *             properties:
  *                name:
  *                  type: string
- *                login:
- *                  type: string
- *                hashed_password:
- *                  type: string
- *                is_active:
- *                  type: boolean
- *                is_creator:
- *                  type: boolean
+ *                postpone:
+ *                  type: Number
  *     responses:
  *       "201":
- *         description: Admin created successfully
+ *         description: Region created successfully
  *       "500":
  *         description: Internal server error
  */
@@ -49,12 +43,12 @@ RegionRouter.post("/createRegion", createRegion);
  * @swagger
  * /RegionRouter/getRegion:
  *   get:
- *     summary: Get all admins
- *     tags: [Admin]
- *     description: Retrieve a list of all admins
+ *     summary: Get all Regions
+ *     tags: [Region]
+ *     description: Retrieve a list of all Regions
  *     responses:
  *       "200":
- *         description: A successful response with a list of admins
+ *         description: A successful response with a list of Regions
  *       "500":
  *         description: Internal server error
  */
@@ -64,21 +58,21 @@ RegionRouter.get("/getRegion", getRegion);
  * @swagger
  * /RegionRouter/getRegionById/{id}:
  *   get:
- *     summary: Get an admin by ID
- *     tags: [Admin]
- *     description: Retrieve an admin by its ID
+ *     summary: Get an Region by ID
+ *     tags: [Region]
+ *     description: Retrieve an Region by its ID
  *     parameters:
  *       - in: path
  *         name: id
- *         description: ID of the admin to retrieve
+ *         description: ID of the Region to retrieve
  *         required: true
  *         schema:
  *           type: string
  *     responses:
  *       "200":
- *         description: A successful response with the admin details
+ *         description: A successful response with the Region details
  *       "404":
- *         description: Admin not found
+ *         description: Region not found
  *       "500":
  *         description: Internal server error
  */
@@ -88,13 +82,13 @@ RegionRouter.get("/getRegionById/:id", getRegionById);
  * @swagger
  * /RegionRouter/updateRegion/{id}:
  *   put:
- *     summary: Update an admin by ID
- *     tags: [Admin]
- *     description: Update an admin with the provided ID and details
+ *     summary: Update an Region by ID
+ *     tags: [Region]
+ *     description: Update an Region with the provided ID and details
  *     parameters:
  *       - in: path
  *         name: id
- *         description: ID of the admin to update
+ *         description: ID of the Region to update
  *         required: true
  *         schema:
  *           type: string
@@ -107,19 +101,13 @@ RegionRouter.get("/getRegionById/:id", getRegionById);
  *             properties:
  *                name:
  *                  type: string
- *                login:
- *                  type: string
- *                hashed_password:
- *                  type: string
- *                is_active:
- *                  type: boolean
- *                is_creator:
- *                  type: boolean
+ *                postpone:
+ *                  type: Number
  *     responses:
  *       "200":
- *         description: Admin updated successfully
+ *         description: Region updated successfully
  *       "404":
- *         description: Admin not found
+ *         description: Region not found
  *       "500":
  *         description: Internal server error
  */

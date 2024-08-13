@@ -4,18 +4,12 @@ const createRegion = async (req, res) => {
     try {
         const {
             name,
-            login,
-            hashed_password,
-            is_active,
-            is_creator
+            postpone
         } = req.body;
 
         const newRegion = new Region({
             name,
-            login,
-            hashed_password,
-            is_active,
-            is_creator
+            postpone
         });
 
         await newRegion.save();

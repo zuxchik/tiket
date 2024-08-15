@@ -1,4 +1,4 @@
-const { ZeatTypoF } = require("./seat_type.Schema");
+const { SeatType } = require("./seat_type.Schema");
 
 const create_SeatTypof = async (req, res) => {
     try {
@@ -6,7 +6,7 @@ const create_SeatTypof = async (req, res) => {
             name
         } = req.body;
 
-        const new_SeatTypof = new ZeatTypoF({
+        const new_SeatTypof = new SeatType({
             name
         });
 
@@ -19,7 +19,7 @@ const create_SeatTypof = async (req, res) => {
 
 const getSeatTypof = async (req, res) => {
     try {
-        const SeatTypofs = await ZeatTypoF.find();
+        const SeatTypofs = await SeatType.find();
         res.send(SeatTypofs);
     } catch (error) {
         res.status(500).send(error.message);
@@ -29,7 +29,7 @@ const getSeatTypof = async (req, res) => {
 const getSeatTypofById = async (req, res) => {
     try {
         const { id } = req.params;
-        const SeatTypof = await ZeatTypoF.findById(id);
+        const SeatTypof = await SeatType.findById(id);
         if (!SeatTypof) {
             return res.status(404).send("SeatTypof not found");
         }
@@ -44,7 +44,7 @@ const updateSeatTypof = async (req, res) => {
         const SeatTypofId = req.params.id;
         const updatedData = req.body;
 
-        const updatedSeatTypof = await ZeatTypoF.findByIdAndUpdate(SeatTypofId, updatedData, {
+        const updatedSeatTypof = await SeatType.findByIdAndUpdate(SeatTypofId, updatedData, {
             new: true,
         });
 

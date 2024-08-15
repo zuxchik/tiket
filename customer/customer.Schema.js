@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { Gender } = require("../gender/gender.Schema");
-const { language } = require("../lenguage/lenguage.Schema");
+const {  Language } = require("../lenguage/lenguage.Schema");
 
 const customerSchema = new Schema({
   first_name: { type: String }, 
@@ -10,7 +10,7 @@ const customerSchema = new Schema({
   birth_date: { type: Date }, 
   email: { type: String, require: true } ,
   gender: { type:Schema.Types.ObjectId, ref: Gender } ,
-  lang_id: { type: Schema.Types.ObjectId, ref: language } ,
+  lang_id: { type: Schema.Types.ObjectId, ref: Language } ,
 });
 
 const Customer = model("customer", customerSchema);

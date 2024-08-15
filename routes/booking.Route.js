@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /booking/create:
+ * /bookingRouter/create:
  *   post:
  *     summary: Create a new booking
  *     tags: [Booking]
@@ -53,7 +53,7 @@ bookingRouter.post("/create", createBooking);
 
 /**
  * @swagger
- * /booking/getBookings:
+ * /bookingRouter/getBookings:
  *   get:
  *     summary: Get all bookings
  *     tags: [Booking]
@@ -68,7 +68,7 @@ bookingRouter.get("/getBookings", getBookings);
 
 /**
  * @swagger
- * /booking/getBooking/{id}:
+ * /bookingRouter/getBooking/{id}:
  *   get:
  *     summary: Get a booking by ID
  *     tags: [Booking]
@@ -92,7 +92,7 @@ bookingRouter.get("/getBooking/:id", getBookingById);
 
 /**
  * @swagger
- * /booking/updateBooking/{id}:
+ * /bookingRouter/updateBooking/{id}:
  *   put:
  *     summary: Update a booking by ID
  *     tags: [Booking]

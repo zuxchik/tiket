@@ -18,7 +18,7 @@ const genderRouter = Router();
 
 /**
  * @swagger
- * /gender/create:
+ * /genderRouter/createGender:
  *   post:
  *     summary: Create a new gender
  *     tags: [Gender]
@@ -37,11 +37,11 @@ const genderRouter = Router();
  *       "400":
  *         description: Bad request
  */
-genderRouter.post("/create", createGender);
+genderRouter.post("/createGender", createGender);
 
 /**
  * @swagger
- * /gender:
+ * /genderRouter/getGenders:
  *   get:
  *     summary: Get all genders
  *     tags: [Gender]
@@ -52,11 +52,11 @@ genderRouter.post("/create", createGender);
  *       "500":
  *         description: Internal server error
  */
-genderRouter.get("/", getGenders);
+genderRouter.get("/getGenders", getGenders);
 
 /**
  * @swagger
- * /gender/{id}:
+ * /genderRouter/getGenderById/{id}:
  *   get:
  *     summary: Get a gender by ID
  *     tags: [Gender]
@@ -76,11 +76,11 @@ genderRouter.get("/", getGenders);
  *       "500":
  *         description: Internal server error
  */
-genderRouter.get("/:id", getGenderById);
+genderRouter.get("/getGenderById/:id", getGenderById);
 
 /**
  * @swagger
- * /gender/{id}:
+ * /genderRouter/updateGender/{id}:
  *   put:
  *     summary: Update a gender by ID
  *     tags: [Gender]
@@ -109,11 +109,11 @@ genderRouter.get("/:id", getGenderById);
  *       "500":
  *         description: Internal server error
  */
-genderRouter.put("updata/:id", updateGender);
+genderRouter.put("updateGender/:id", updateGender);
 
 /**
  * @swagger
- * /gender/{id}:
+ * /genderRouter/deletdeleteGender/{id}:
  *   delete:
  *     summary: Delete a gender by ID
  *     tags: [Gender]
@@ -133,6 +133,6 @@ genderRouter.put("updata/:id", updateGender);
  *       "500":
  *         description: Internal server error
  */
-genderRouter.delete("/delet/:id", deleteGender);
+genderRouter.delete("/deletdeleteGender/:id", deleteGender);
 
 module.exports = { genderRouter };

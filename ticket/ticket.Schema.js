@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { SeatBek } = require("../seat/seat.Schema");
+const { Status } = require("../status/status.Schema");
 const { Schema } = mongoose;
 
 const ticketSchema = new Schema({
@@ -7,7 +8,7 @@ const ticketSchema = new Schema({
   seat_id: { type: Schema.Types.ObjectId, ref: SeatBek },
   price: { type: Number, require: true },
   service_fee: { type: Number, require: true },
-  status_id: { type: Number, require: true },
+  status_id: { type: Schema.Types.ObjectId, ref: Status },
   ticket_type: { type: Number, require: true }
 });
 

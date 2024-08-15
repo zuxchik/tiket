@@ -57,7 +57,7 @@ const updateSector = async (req, res) => {
         res.json({
             success: true,
             message: "Sector ma'lumotlari yangilandi.",
-            SectorChik: updatedSector,
+            sectorChik: updatedSector,
         });
     } catch (error) {
         console.error("Xato:", error);

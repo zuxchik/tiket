@@ -28,12 +28,29 @@ const {
  *           schema:
  *             properties:
  *               name:
- *                 type: string
- *               date:
- *                 type: string
- *                 format: date
- *               location:
- *                 type: string
+ *                type: string
+ *               photo:
+ *                type: string
+ *               start_date:
+ *                type: date
+ *               start_time:
+ *                type: date
+ *               finish_date:
+ *                type: date
+ *               finish_time:
+ *                type: date
+ *               info:
+ *                type: string
+ *               event_type_id:
+ *                type: string
+ *               human_category_id:
+ *                type: string
+ *               venue_id:
+ *                type: string
+ *               lang_id:
+ *                type: string
+ *               release_date:
+ *                type: date
  *     responses:
  *       "201":
  *         description: Event created successfully
@@ -103,12 +120,29 @@ eventRouter.get("/getEvent/:id", getEventById);
  *             type: object
  *             properties:
  *               name:
- *                 type: string
- *               date:
- *                 type: string
- *                 format: date
- *               location:
- *                 type: string
+ *                type: string
+ *               photo:
+ *                type: string
+ *               start_date:
+ *                type: date
+ *               start_time:
+ *                type: date
+ *               finish_date:
+ *                type: date
+ *               finish_time:
+ *                type: date
+ *               info:
+ *                type: string
+ *               event_type_id:
+ *                type: string
+ *               human_category_id:
+ *                type: string
+ *               venue_id:
+ *                type: string
+ *               lang_id:
+ *                type: string
+ *               release_date:
+ *                type: date
  *     responses:
  *       "200":
  *         description: Event updated successfully

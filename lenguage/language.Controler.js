@@ -1,79 +1,79 @@
-const { language } = require("./lenguage.Schema");
+const { Language } = require("./lenguage.Schema");
 
 const createLanguage = async (req, res) => {
   try {
-    const { language: languageName, discription } = req.body;
-    const newLanguage = new language({ language: languageName, discription });
+    const { Language: LanguageName, discription } = req.body;
+    const newLanguage = new Language({ Language: LanguageName, discription });
     await newLanguage.save();
     res.status(201).json({ message: "Language created successfully", newLanguage });
   } catch (error) {
-    console.error("Error creating language:", error);
-    res.status(500).json({ message: "Server error: Unable to create language" });
+    console.error("Error creating Language:", error);
+    res.status(500).json({ message: "Server error: Unable to create Language" });
   }
 };
 
 const getLanguages = async (req, res) => {
   try {
-    const languages = await language.find();
-    res.json({ languages });
+    const Languages = await Language.find();
+    res.json({ Languages });
   } catch (error) {
-    console.error("Error fetching languages:", error);
-    res.status(500).json({ message: "Server error: Unable to fetch languages" });
+    console.error("Error fetching Languages:", error);
+    res.status(500).json({ message: "Server error: Unable to fetch Languages" });
   }
 };
 
 const getLanguageById = async (req, res) => {
   try {
-    const languageId = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(languageId)) {
+    const LanguageId = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(LanguageId)) {
       return res.status(400).json({ message: "Invalid ID format" });
     }
-    const foundLanguage = await language.findById(languageId);
+    const foundLanguage = await Language.findById(LanguageId);
     if (foundLanguage) {
       res.json({ foundLanguage });
     } else {
       res.status(404).json({ message: "Language not found" });
     }
   } catch (error) {
-    console.error("Error fetching language by ID:", error);
-    res.status(500).json({ message: "Server error: Unable to fetch language by ID" });
+    console.error("Error fetching Language by ID:", error);
+    res.status(500).json({ message: "Server error: Unable to fetch Language by ID" });
   }
 };
 
 const updateLanguage = async (req, res) => {
   try {
-    const languageId = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(languageId)) {
+    const LanguageId = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(LanguageId)) {
       return res.status(400).json({ message: "Invalid ID format" });
     }
     const updatedData = req.body;
-    const updatedLanguage = await language.findByIdAndUpdate(languageId, updatedData, { new: true });
+    const updatedLanguage = await Language.findByIdAndUpdate(LanguageId, updatedData, { new: true });
     if (updatedLanguage) {
       res.json({ message: "Language updated successfully", updatedLanguage });
     } else {
       res.status(404).json({ message: "Language not found" });
     }
   } catch (error) {
-    console.error("Error updating language:", error);
-    res.status(500).json({ message: "Server error: Unable to update language" });
+    console.error("Error updating Language:", error);
+    res.status(500).json({ message: "Server error: Unable to update Language" });
   }
 };
 
 const deleteLanguage = async (req, res) => {
   try {
-    const languageId = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(languageId)) {
+    const LanguageId = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(LanguageId)) {
       return res.status(400).json({ message: "Invalid ID format" });
     }
-    const deletedLanguage = await language.findByIdAndDelete(languageId);
+    const deletedLanguage = await Language.findByIdAndDelete(LanguageId);
     if (deletedLanguage) {
       res.json({ message: "Language deleted successfully" });
     } else {
       res.status(404).json({ message: "Language not found" });
     }
   } catch (error) {
-    console.error("Error deleting language:", error);
-    res.status(500).json({ message: "Server error: Unable to delete language" });
+    console.error("Error deleting Language:", error);
+    res.status(500).json({ message: "Server error: Unable to delete Language" });
   }
 };
 

@@ -1,17 +1,23 @@
-const { TicketBek } = require("./ticket.Schema");
+const { Ticket } = require("./ticket.Schema");
 
 const create_TiketCheks = async (req, res) => {
     try {
         const {
             event_id,
             seat_id,
-            price
+            status_id,
+            price,
+            service_fee,
+            ticket_type
         } = req.body;
 
-        const new_TiketCheks = new TicketBek({
+        const new_TiketCheks = new Ticket({
             event_id,
             seat_id,
-            price
+            status_id,
+            price,
+            service_fee,
+            ticket_type
         });
 
         await new_TiketCheks.save();
@@ -23,7 +29,7 @@ const create_TiketCheks = async (req, res) => {
 
 const getTiketCheks = async (req, res) => {
     try {
-        const TiketChekss = await TicketBek.find();
+        const TiketChekss = await Ticket.find().populate("event_id seat_id status_id");
         res.send(TiketChekss);
     } catch (error) {
         res.status(500).send(error.message);
@@ -33,7 +39,7 @@ const getTiketCheks = async (req, res) => {
 const getTiketCheksById = async (req, res) => {
     try {
         const { id } = req.params;
-        const TiketCheks = await TicketBek.findById(id);
+        const TiketCheks = await Ticket.findById(id);
         if (!TiketCheks) {
             return res.status(404).send("TiketCheks not found");
         }
@@ -48,9 +54,9 @@ const updateTiketCheks = async (req, res) => {
         const TiketCheksId = req.params.id;
         const updatedData = req.body;
 
-        const updatedTiketCheks = await TicketBek.findByIdAndUpdate(TiketCheksId, updatedData, {
+        const updatedTiketCheks = await Ticket.findByIdAndUpdate(TiketCheksId, updatedData, {
             new: true,
-        });
+        }).populate("event_id seat_id status_id");
 
         if (!updatedTiketCheks) {
             return res.status(404).json({

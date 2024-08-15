@@ -32,7 +32,6 @@ const getGenderById = async (req, res) => {
   try {
     const genderId = req.params.id;
     
-    // Check if genderId is a valid ObjectId
     if (!mongoose.Types.ObjectId.isValid(genderId)) {
       return res.status(400).json({ message: "Invalid ID format" });
     }

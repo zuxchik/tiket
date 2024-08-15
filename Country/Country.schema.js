@@ -4,6 +4,6 @@ const CountrySchema = new Schema({
     country: { type: String, require: true }
 });
 
-const countrychik = model("country", CountrySchema);
+const Country = model("country", CountrySchema);
 
-module.exports = { countrychik };
+module.exports = { Country };

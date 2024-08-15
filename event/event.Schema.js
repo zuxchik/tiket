@@ -1,7 +1,8 @@
 const { Schema, model } = require("mongoose");
-const { event_typeChik } = require("../event_type/event_type.Schema");
+const { Event_typeChik } = require("../event_type/event_type.Schema");
 const { HumanCategory } = require("../human_category/human_category.Schema");
-const { VenueBek } = require("../venue/venue.Schema")
+const { VenueBek } = require("../venue/venue.Schema");
+const { Language } = require("../lenguage/lenguage.Schema");
 
 const eventSchema = new Schema({
   name: { type: String, require: true },
@@ -11,10 +12,10 @@ const eventSchema = new Schema({
   finish_date: { type: Date, require: true },
   finish_time: { type: Date, require: true },
   info: { type: String, require: true },
-  event_type_id: { type: Schema.Types.ObjectId, ref: event_typeChik },
+  event_type_id: { type: Schema.Types.ObjectId, ref: Event_typeChik },
   human_category_id: { type: Schema.Types.ObjectId, ref: HumanCategory },
   venue_id: { type: Schema.Types.ObjectId, ref: VenueBek },
-  // lang_id: { type: Number, require: true },
+  lang_id: { type: Schema.Types.ObjectId, ref: Language },
   release_date: { type: Date, require: true }
 });
 

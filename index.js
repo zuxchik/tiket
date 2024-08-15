@@ -52,8 +52,8 @@ app.get("/", (req, res) => {
 const { bookingRouter } = require("./routes/booking.Route.js");
 app.use("/booking", bookingRouter);
 
-const { Discrict } = require("./routes/Discrict.Route.js");
-app.use("/Discrict", Discrict);
+const { District } = require("./routes/District.Route.js");
+app.use("/District", District);
 
 const { venue_type } = require("./routes/venue_type.Route.js");
 app.use("/venue_type", venue_type);

@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const Discrict = Router();
+const District = Router();
 
 const {
     createDistrict,
@@ -12,16 +12,16 @@ const {
  * @swagger
  * tags:
  *   name: District
- *   description: API endpoints for managing Discticts
+ *   description: API endpoints for managing Districts
  */
 
 /**
  * @swagger
- * /Discrict/createDistrict:
+ * /District/createDistrict:
  *   post:
- *     summary: Create a new Discrict
- *     tags: [Discrict]
- *     description: Create a new Discrict with the provided details
+ *     summary: Create a new District
+ *     tags: [District]
+ *     description: Create a new District with the provided details
  *     requestBody:
  *       required: true
  *       content:
@@ -34,62 +34,62 @@ const {
  *                type: string
  *     responses:
  *       "201":
- *         description: Discrict created successfully
+ *         description: District created successfully
  *       "500":
  *         description: Internal server error
  */
-Discrict.post("/createDistrict", createDistrict);
+District.post("/createDistrict", createDistrict);
 
 /**
  * @swagger
- * /Discrict/getDiscrict:
+ * /District/getDistrict:
  *   get:
- *     summary: Get all Discricts
- *     tags: [Discrict]
- *     description: Retrieve a list of all Discricts
+ *     summary: Get all Districts
+ *     tags: [District]
+ *     description: Retrieve a list of all Districts
  *     responses:
  *       "200":
- *         description: A successful response with a list of Discricts
+ *         description: A successful response with a list of Districts
  *       "500":
  *         description: Internal server error
  */
-Discrict.get("/getDistrict", getDistrict);
+District.get("/getDistrict", getDistrict);
 
 /**
  * @swagger
- * /Discrict/getDistrictById/{id}:
+ * /District/getDistrictById/{id}:
  *   get:
- *     summary: Get an Discrict by ID
- *     tags: [Discrict]
- *     description: Retrieve an Discrict by its ID
+ *     summary: Get a District by ID
+ *     tags: [District]
+ *     description: Retrieve a District by its ID
  *     parameters:
  *       - in: path
  *         name: id
- *         description: ID of the Discrict to retrieve
+ *         description: ID of the District to retrieve
  *         required: true
  *         schema:
  *           type: string
  *     responses:
  *       "200":
- *         description: A successful response with the Discrict details
+ *         description: A successful response with the District details
  *       "404":
- *         description: Discrict not found
+ *         description: District not found
  *       "500":
  *         description: Internal server error
  */
-Discrict.get("/getDistrictById/:id", getDistrictById);
+District.get("/getDistrictById/:id", getDistrictById);
 
 /**
  * @swagger
- * /Discrict/updateDistrict/{id}:
+ * /District/updateDistrict/{id}:
  *   put:
- *     summary: Update an Discrict by ID
- *     tags: [Discrict]
- *     description: Update an Discrict with the provided ID and details
+ *     summary: Update a District by ID
+ *     tags: [District]
+ *     description: Update a District with the provided ID and details
  *     parameters:
  *       - in: path
  *         name: id
- *         description: ID of the Discrict to update
+ *         description: ID of the District to update
  *         required: true
  *         schema:
  *           type: string
@@ -107,12 +107,12 @@ Discrict.get("/getDistrictById/:id", getDistrictById);
  *
  *     responses:
  *       "200":
- *         description: Discrict updated successfully
+ *         description: District updated successfully
  *       "404":
- *         description: Discrict not found
+ *         description: District not found
  *       "500":
  *         description: Internal server error
  */
-Discrict.put("/updateDistrict/:id", updateDistrict);
+District.put("/updateDistrict/:id", updateDistrict);
 
-module.exports = { Discrict }; 
+module.exports = { District };

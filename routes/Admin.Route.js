@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /adminRouter/create:
+ * /adminRouter/createAdmin:
  *   post:
  *     summary: Create a new admin
  *     tags: [Admin]
@@ -43,7 +43,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-adminRouter.post("/create", createAdmin);
+adminRouter.post("/createAdmin", createAdmin);
 
 /**
  * @swagger
@@ -82,7 +82,7 @@ adminRouter.get("/getAdmin", getAdmin);
  *       "500":
  *         description: Internal server error
  */
-adminRouter.get("/getAdmin/:id", getAdminById);
+adminRouter.get("/getAdminById/:id", getAdminById);
 
 /**
  * @swagger

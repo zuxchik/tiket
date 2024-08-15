@@ -2,12 +2,12 @@ const { Schema, model } = require("mongoose");
 const { Customer } = require("../customer/customer.Schema")
 const { Region } = require("../Region/region.Schema");
 const { District } = require("../discrict/discrict.Schema");
-const { countrychik } = require("../Country/Country.schema");
+const { Country } = require("../Country/Country.schema");
 
 const customerAddressSchema = new Schema({
   customer_id: { type: Schema.Types.ObjectId, ref: Customer },
   name: { type: String, require: true },
-  country_id: { type: Schema.Types.ObjectId, ref: countrychik },
+  country_id: { type: Schema.Types.ObjectId, ref: Country },
   region_id: { type: Schema.Types.ObjectId, ref: Region },
   district_id: { type: Schema.Types.ObjectId, ref: District },
   street: { type: String, require: true },

@@ -5,6 +5,6 @@ const languageSchema = new Schema({
   discription: { type: String, require: true }
 });
 
-const language = model("language", languageSchema);
+const Language = model("language", languageSchema);
 
-module.exports = { language };
+module.exports = { Language };

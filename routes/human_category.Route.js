@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /human_category/create:
+ * /humanCategoryRouter/create:
  *   post:
  *     summary: Create a new human category
  *     tags: [HumanCategory]
@@ -44,7 +44,7 @@ const {
 humanCategoryRouter.post("/create", create_HumanCategory);
 /**
  * @swagger
- * /human_category/getHumanCategories:
+ * /humanCategoryRouter/getHumanCategories:
  *   get:
  *     summary: Get all human categories
  *     tags: [HumanCategory]
@@ -59,7 +59,7 @@ humanCategoryRouter.get("/getHumanCategories", getHumanCategory);
 
 /**
  * @swagger
- * /human_category/getHumanCategory/{id}:
+ * /humanCategoryRouter/getHumanCategory/{id}:
  *   get:
  *     summary: Get a human category by ID
  *     tags: [HumanCategory]
@@ -83,7 +83,7 @@ humanCategoryRouter.get("/getHumanCategoryById/:id", getHumanCategoryById);
 
 /**
  * @swagger
- * /human_category/updateHumanCategory/{id}:
+ * /humanCategoryRouter/updateHumanCategory/{id}:
  *   put:
  *     summary: Update a human category by ID
  *     tags: [HumanCategory]

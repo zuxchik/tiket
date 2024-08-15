@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /cart/create:
+ * /cartRouter/createCart:
  *   post:
  *     summary: Create a new cart
  *     tags: [Cart]
@@ -27,28 +27,27 @@ const {
  *         application/json:
  *           schema:
  *             properties:
- *               userId:
- *                 type: string
- *               items:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     productId:
- *                       type: string
- *                     quantity:
- *                       type: integer
+ *               ticket_id:
+ *                type: string
+ *               customer_id:
+ *                type: string
+ *               createdAt:
+ *                type: Date
+ *               finishedAt:
+ *                type: Date
+ *               status_id:
+ *                type: string
  *     responses:
  *       "201":
  *         description: Cart created successfully
  *       "500":
  *         description: Internal server error
  */
-cartRouter.post("/create", createCart);
+cartRouter.post("/createCart", createCart);
 
 /**
  * @swagger
- * /cart/getCarts:
+ * /cartRouter/getCarts:
  *   get:
  *     summary: Get all carts
  *     tags: [Cart]
@@ -63,7 +62,7 @@ cartRouter.get("/getCarts", getCarts);
 
 /**
  * @swagger
- * /cart/getCart/{id}:
+ * /cartRouter/getCartById/{id}:
  *   get:
  *     summary: Get a cart by ID
  *     tags: [Cart]
@@ -83,11 +82,11 @@ cartRouter.get("/getCarts", getCarts);
  *       "500":
  *         description: Internal server error
  */
-cartRouter.get("/getCart/:id", getCartById);
+cartRouter.get("/getCartById/:id", getCartById);
 
 /**
  * @swagger
- * /cart/updateCart/{id}:
+ * /cartRouter/updateCart/{id}:
  *   put:
  *     summary: Update a cart by ID
  *     tags: [Cart]
@@ -106,15 +105,16 @@ cartRouter.get("/getCart/:id", getCartById);
  *           schema:
  *             type: object
  *             properties:
- *               items:
- *                 type: array
- *                 items:
- *                   type: object
- *                   properties:
- *                     productId:
- *                       type: string
- *                     quantity:
- *                       type: integer
+ *               ticket_id:
+ *                type: string
+ *               customer_id:
+ *                type: string
+ *               createdAt:
+ *                type: Date
+ *               finishedAt:
+ *                type: Date
+ *               status_id:
+ *                type: string
  *     responses:
  *       "200":
  *         description: Cart updated successfully

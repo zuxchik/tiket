@@ -32,11 +32,11 @@ const getFlat = async (req, res) => {
 const getFlatById = async (req, res) => {
     try {
         const { Flatid } = req.params;
-        const Flat = await Flat.findById(Flatid);
-        if (!Flat) {
+        const flat = await Flat.findById(Flatid);
+        if (!flat) {
             return res.status(404).send("Flat not found");
         }
-        res.send(Flat);
+        res.send(flat);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

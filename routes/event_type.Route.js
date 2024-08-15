@@ -1,15 +1,10 @@
 const { Router } = require("express");
 const eventTypeRouter = Router();
-const { getEventTypes, createEventType, getEventTypeById, updateEventType } = require("../event_type/event_type.Controller");
-//----------------------------------
-// const { Router } = require("express");
-// const eventTypeRouter = Router();
-// const { getEventType, createEventType, getEventTypeById, updateEventType } = require("../event_type/event_type.Controller");
-
-// Correct function usage in the route
-
-// module.exports = { eventTypeRouter };
-//----------------------------------------------
+const {
+    getEventTypes,
+    createEventType,
+    getEventTypeById,
+    updateEventType } = require("../event_type/event_type.Controller");
 
 /**
  * @swagger
@@ -20,7 +15,7 @@ const { getEventTypes, createEventType, getEventTypeById, updateEventType } = re
 
 /**
  * @swagger
- * /event_type/create:
+ * /eventTypeRouter/createEventType:
  *   post:
  *     summary: Create a new event type
  *     tags: [EventType]
@@ -30,6 +25,7 @@ const { getEventTypes, createEventType, getEventTypeById, updateEventType } = re
  *       content:
  *         application/json:
  *           schema:
+ *             type: object
  *             properties:
  *               name:
  *                 type: string
@@ -39,11 +35,11 @@ const { getEventTypes, createEventType, getEventTypeById, updateEventType } = re
  *       "500":
  *         description: Internal server error
  */
-eventTypeRouter.post("/create", createEventType);
+eventTypeRouter.post("/createEventType", createEventType);
 
 /**
  * @swagger
- * /event_type/getEventTypes:
+ * /eventTypeRouter/getEventTypes:
  *   get:
  *     summary: Get all event types
  *     tags: [EventType]
@@ -58,7 +54,7 @@ eventTypeRouter.get("/getEventTypes", getEventTypes);
 
 /**
  * @swagger
- * /event_type/getEventType/{id}:
+ * /eventTypeRouter/getEventTypeById/{id}:
  *   get:
  *     summary: Get an event type by ID
  *     tags: [EventType]
@@ -78,11 +74,11 @@ eventTypeRouter.get("/getEventTypes", getEventTypes);
  *       "500":
  *         description: Internal server error
  */
-eventTypeRouter.get("/getEventType/:id", getEventTypeById);
+eventTypeRouter.get("/getEventTypeById/:id", getEventTypeById);
 
 /**
  * @swagger
- * /event_type/updateEventType/{id}:
+ * /eventTypeRouter/updateEventType/{id}:
  *   put:
  *     summary: Update an event type by ID
  *     tags: [EventType]

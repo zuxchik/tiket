@@ -1,6 +1,11 @@
 const { Router } = require("express");
 const ticketRouter = Router();
-const { getTiketCheks, create_TiketCheks, getTiketCheksById, updateTiketCheks } = require("../ticket/tucket.controller");
+const {
+    create_TiketCheks,
+    getTiketCheks,
+    getTiketCheksById,
+    updateTiketCheks } = require("../ticket/tucket.controller");
+
 
 /**
  * @swagger
@@ -11,7 +16,7 @@ const { getTiketCheks, create_TiketCheks, getTiketCheksById, updateTiketCheks } 
 
 /**
  * @swagger
- * /ticket/create_TiketCheks:
+ * /ticket/createTicketChecks:
  *   post:
  *     summary: Create a new ticket
  *     tags: [Ticket]
@@ -22,19 +27,29 @@ const { getTiketCheks, create_TiketCheks, getTiketCheksById, updateTiketCheks } 
  *         application/json:
  *           schema:
  *             properties:
- *               name:
- *                 type: string
+ *               event_id:
+ *                type: string
+ *               seat_id:
+ *                type: string
+ *               status_id:
+ *                type: string
+ *               price:
+ *                type: number
+ *               service_fee:
+ *                type: number
+ *               ticket_type:
+ *                type: number
  *     responses:
  *       "201":
  *         description: Ticket created successfully
  *       "500":
  *         description: Internal server error
  */
-ticketRouter.post("/create_TiketCheks", create_TiketCheks);
+ticketRouter.post("/createTicketChecks", create_TiketCheks);
 
 /**
  * @swagger
- * /ticket/getTiketCheks:
+ * /ticket/getTicketChecks:
  *   get:
  *     summary: Get all tickets
  *     tags: [Ticket]
@@ -45,11 +60,11 @@ ticketRouter.post("/create_TiketCheks", create_TiketCheks);
  *       "500":
  *         description: Internal server error
  */
-ticketRouter.get("/getTiketCheks", getTiketCheks);
+ticketRouter.get("/getTicketChecks", getTiketCheks);
 
 /**
  * @swagger
- * /ticket/getTiketCheksById/{id}:
+ * /ticket/getTicketChecksById/{id}:
  *   get:
  *     summary: Get a ticket by ID
  *     tags: [Ticket]
@@ -69,11 +84,11 @@ ticketRouter.get("/getTiketCheks", getTiketCheks);
  *       "500":
  *         description: Internal server error
  */
-ticketRouter.get("/getTiketCheksById/:id", getTiketCheksById);
+ticketRouter.get("/getTicketChecksById/:id", getTiketCheksById);
 
 /**
  * @swagger
- * /ticket/updateTiketCheks/{id}:
+ * /ticket/updateTicketChecks/{id}:
  *   put:
  *     summary: Update a ticket by ID
  *     tags: [Ticket]
@@ -92,8 +107,18 @@ ticketRouter.get("/getTiketCheksById/:id", getTiketCheksById);
  *           schema:
  *             type: object
  *             properties:
- *               name:
- *                 type: string
+ *               event_id:
+ *                type: string
+ *               seat_id:
+ *                type: string
+ *               status_id:
+ *                type: string
+ *               price:
+ *                type: number
+ *               service_fee:
+ *                type: number
+ *               ticket_type:
+ *                type: number
  *     responses:
  *       "200":
  *         description: Ticket updated successfully
@@ -102,6 +127,6 @@ ticketRouter.get("/getTiketCheksById/:id", getTiketCheksById);
  *       "500":
  *         description: Internal server error
  */
-ticketRouter.put("/updateTiketCheks/:id", updateTiketCheks);
+ticketRouter.put("/updateTicketChecks/:id", updateTiketCheks);
 
 module.exports = { ticketRouter };

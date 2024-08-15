@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /venue/create:
+ * /venueRouter/create_Venue:
  *   post:
  *     summary: Create a new venue
  *     tags: [Venue]
@@ -27,19 +27,35 @@ const {
  *         application/json:
  *           schema:
  *             properties:
- *               name:
- *                 type: string
+ *              name:
+ *                type: String
+ *              address:
+ *                type: String
+ *              location:
+ *                type: String
+ *              site:
+ *                type: String
+ *              phone:
+ *                type: String
+ *              venue_type_id:
+ *                type: String
+ *              schema:
+ *                type: String
+ *              region_id:
+ *                type: String
+ *              district_id:
+ *                type: String
  *     responses:
  *       "201":
  *         description: Venue created successfully
  *       "500":
  *         description: Internal server error
  */
-venueRouter.post("/create", create_Venue);
+venueRouter.post("/create_Venue", create_Venue);
 
 /**
  * @swagger
- * /venue/getVenues:
+ * /venueRouter/getVenue:
  *   get:
  *     summary: Get all venues
  *     tags: [Venue]
@@ -50,11 +66,11 @@ venueRouter.post("/create", create_Venue);
  *       "500":
  *         description: Internal server error
  */
-venueRouter.get("/getVenues", getVenue);
+venueRouter.get("/getVenue", getVenue);
 
 /**
  * @swagger
- * /venue/getVenue/{id}:
+ * /venueRouter/getVenueById/{id}:
  *   get:
  *     summary: Get a venue by ID
  *     tags: [Venue]
@@ -74,11 +90,11 @@ venueRouter.get("/getVenues", getVenue);
  *       "500":
  *         description: Internal server error
  */
-venueRouter.get("/getVenue/:id", getVenueById);
+venueRouter.get("/getVenueById/:id", getVenueById);
 
 /**
  * @swagger
- * /venue/updateVenue/{id}:
+ * /venueRouter/updateVenue/{id}:
  *   put:
  *     summary: Update a venue by ID
  *     tags: [Venue]
@@ -97,8 +113,24 @@ venueRouter.get("/getVenue/:id", getVenueById);
  *           schema:
  *             type: object
  *             properties:
- *               name:
- *                 type: string
+ *              name:
+ *                type: String
+ *              address:
+ *                type: String
+ *              location:
+ *                type: String
+ *              site:
+ *                type: String
+ *              phone:
+ *                type: String
+ *              venue_type_id:
+ *                type: String
+ *              schema:
+ *                type: String
+ *              region_id:
+ *                type: String
+ *              district_id:
+ *                type: String
  *     responses:
  *       "200":
  *         description: Venue updated successfully

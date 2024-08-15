@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /TicketTypeChikRoute/create_Ticket_Chik:
+ * /TicketTypeChik/create_Ticket_Chik:
  *   post:
  *     summary: Create a new TicketTypeChik
  *     tags: [TicketTypeChik]
@@ -43,7 +43,7 @@ TicketTypeChikRoute.post("/create_Ticket_Chik", create_Ticket_Chik);
 
 /**
  * @swagger
- * /TicketTypeChikRoute/getTicket_Chik:
+ * /TicketTypeChik/getTicket_Chik:
  *   get:
  *     summary: Get all TicketTypeChik
  *     tags: [TicketTypeChik]
@@ -58,7 +58,7 @@ TicketTypeChikRoute.get("/getTicket_Chik", getTicket_Chik);
 
 /**
  * @swagger
- * /TicketTypeChikRoute/getTicket_ChikById/{id}:
+ * /TicketTypeChik/getTicket_ChikById/{id}:
  *   get:
  *     summary: Get a TicketTypeChik by ID
  *     tags: [TicketTypeChik]
@@ -82,7 +82,7 @@ TicketTypeChikRoute.get("/getTicket_ChikById/:id", getTicket_ChikById);
 
 /**
  * @swagger 
- * /TicketTypeChikRoute/updateTicket_Chik/{id}:
+ * /TicketTypeChik/updateTicket_Chik/{id}:
  *   put:
  *     summary: Update a TicketTypeChik by ID
  *     tags: [TicketTypeChik]

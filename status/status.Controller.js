@@ -28,8 +28,8 @@ const getStatus = async (req, res) => {
 const getStatusById = async (req, res) => {
     try {
         const { id } = req.params;
-        const Status = await Status.findById(id);
-        if (!Status) {
+        const status = await Status.findById(id);
+        if (!status) {
             return res.status(404).send("Status not found");
         }
         res.send(Status);

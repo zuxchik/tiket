@@ -3,7 +3,6 @@ const { CustomerAddress } = require("./customer_address.Schema");
 const createCustomerAddress = async (req, res) => {
   try {
     const {
-      id,
       customer_id,
       country_id,
       region_id,
@@ -18,7 +17,6 @@ const createCustomerAddress = async (req, res) => {
     } = req.body;
 
     const newCustomerAddress = new CustomerAddress({
-      id,
       customer_id,
       name,
       country_id,

@@ -1,4 +1,4 @@
-const { venue_TypeChik } = require("./venue_type.Schema");
+const { VenueType } = require("./venue_type.Schema");
 
 const createvenueType = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ const createvenueType = async (req, res) => {
       // is_creator,
     } = req.body;
 
-    const newvenueType = new venue_TypeChik({
+    const newvenueType = new VenueType({
       name,
       login,
       hashed_password,
@@ -27,7 +27,7 @@ const createvenueType = async (req, res) => {
 
 const getvenueType = async (req, res) => {
   try {
-    const venueTypes = await venue_TypeChik.find();
+    const venueTypes = await VenueType.find();
     res.send(venueTypes);
   } catch (error) {
     res.status(500).send(error.message);
@@ -37,7 +37,7 @@ const getvenueType = async (req, res) => {
 const getvenueTypeById = async (req, res) => {
   try {
     const { id } = req.params;
-    const venueType = await venue_TypeChik.findById(id);
+    const venueType = await VenueType.findById(id);
     if (!venueType) {
       return res.status(404).send("venueType not found");
     }
@@ -52,7 +52,7 @@ const updatevenueType = async (req, res) => {
     const venueTypeId = req.params.id;
     const updatedData = req.body;
 
-    const updatedvenueType = await venue_TypeChik.findByIdAndUpdate(venueTypeId, updatedData, {
+    const updatedvenueType = await VenueType.findByIdAndUpdate(venueTypeId, updatedData, {
       new: true,
     });
 

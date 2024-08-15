@@ -21,8 +21,8 @@ const create_VenuePhoto = async (req, res) => {
 
 const getVenuePhoto = async (req, res) => {
     try {
-        const VenuePhotos = await VenuePhotos.find();
-        res.send(VenuePhotos);
+        const venuePhotos = await VenuePhotos.find();
+        res.send(venuePhotos);
     } catch (error) {
         res.status(500).send(error.message);
     }

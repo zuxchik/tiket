@@ -12,7 +12,7 @@ const { getSeat, create_Seat, getSeatById, updateSeat } = require("../seat/seat.
 
 /**
  * @swagger
- * /seat/create:
+ * /seatRouter/create_Seat:
  *   post:
  *     summary: Create a new seat
  *     tags: [Seat]
@@ -23,23 +23,27 @@ const { getSeat, create_Seat, getSeatById, updateSeat } = require("../seat/seat.
  *         application/json:
  *           schema:
  *             properties:
- *               row:
- *                 type: string
- *               number:
- *                 type: string
- *               typeId:
- *                 type: string
+ *              sector_id:
+ *               type: string
+ *              row_number:
+ *               type: number
+ *              number:
+ *               type: string
+ *              venue_id:
+ *               type: string
+ *              seat_type_id:
+ *               type: string
  *     responses:
  *       "201":
  *         description: Seat created successfully
  *       "500":
  *         description: Internal server error
  */
-seatRouter.post("/create", create_Seat);
+seatRouter.post("/create_Seat", create_Seat);
 
 /**
  * @swagger
- * /seat/getSeats:
+ * /seatRouter/getSeats:
  *   get:
  *     summary: Get all seats
  *     tags: [Seat]
@@ -54,7 +58,7 @@ seatRouter.get("/getSeats", getSeat);
 
 /**
  * @swagger
- * /seat/getSeat/{id}:
+ * /seatRouter/getSeat/{id}:
  *   get:
  *     summary: Get a seat by ID
  *     tags: [Seat]
@@ -78,7 +82,7 @@ seatRouter.get("/getSeat/:id", getSeatById);
 
 /**
  * @swagger
- * /seat/updateSeat/{id}:
+ * /seatRouter/updateSeat/{id}:
  *   put:
  *     summary: Update a seat by ID
  *     tags: [Seat]
@@ -97,12 +101,16 @@ seatRouter.get("/getSeat/:id", getSeatById);
  *           schema:
  *             type: object
  *             properties:
- *               row:
- *                 type: string
- *               number:
- *                 type: string
- *               typeId:
- *                 type: string
+ *              sector_id:
+ *               type: string
+ *              row_number:
+ *               type: number
+ *              number:
+ *               type: string
+ *              venue_id:
+ *               type: string
+ *              seat_type_id:
+ *               type: string
  *     responses:
  *       "200":
  *         description: Seat updated successfully

@@ -75,5 +75,5 @@ module.exports = {
     createDiscaunt,
     getDiscaunt,
     getDiscauntById,
-    updateDiscaunt,
+    updateDiscaunt
 };

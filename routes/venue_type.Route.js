@@ -16,21 +16,6 @@ const {
 
 /**
  * @swagger
- * /venue_type/getvenueType:
- *   get:
- *     summary: Get all venue types
- *     tags: [VenueType]
- *     description: Retrieve a list of all venue types
- *     responses:
- *       "200":
- *         description: A successful response with a list of venue types
- *       "500":
- *         description: Internal server error
- */
-venue_type.get("/getvenueType", getvenueType);
-
-/**
- * @swagger
  * /venue_type/createvenueType:
  *   post:
  *     summary: Create a new venue type
@@ -51,6 +36,21 @@ venue_type.get("/getvenueType", getvenueType);
  *         description: Internal server error
  */
 venue_type.post("/createvenueType", createvenueType);
+
+/**
+ * @swagger
+ * /venue_type/getvenueType:
+ *   get:
+ *     summary: Get all venue types
+ *     tags: [VenueType]
+ *     description: Retrieve a list of all venue types
+ *     responses:
+ *       "200":
+ *         description: A successful response with a list of venue types
+ *       "500":
+ *         description: Internal server error
+ */
+venue_type.get("/getvenueType", getvenueType);
 
 /**
  * @swagger

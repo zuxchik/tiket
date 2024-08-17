@@ -1,4 +1,4 @@
-const { HumanCategory } = require("./human_category.Schema");
+const { HumanCategory } = require("./human_category.Schema")
 
 const create_HumanCategory = async (req, res) => {
     try {
@@ -9,15 +9,15 @@ const create_HumanCategory = async (req, res) => {
             gender_id
         } = req.body;
 
-        const new_HumanCategory = new HumanCategory({
+        const newhumenCategory = new HumanCategory({
             name,
             start_age,
             finish_age,
             gender_id
         });
 
-        await new_HumanCategory.save();
-        res.status(201).send(new_HumanCategory);
+        await newhumenCategory.save();
+        res.status(201).send(newhumenCategory);
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -25,60 +25,59 @@ const create_HumanCategory = async (req, res) => {
 
 const getHumanCategory = async (req, res) => {
     try {
-        const HumanCategorys = await HumanCategory.find().populate("gender_id");
-        res.send(HumanCategorys);
+        const humenCategorys = await HumanCategory.find().populate("gender_id")
+        res.send(humenCategorys);
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
 
-
 const getHumanCategoryById = async (req, res) => {
     try {
-        const { HumanCategoryid } = req.params;
-        const humanCategory = await HumanCategory.findById(HumanCategoryid).populate("gender_id");
-        if (!humanCategory) {
-            return res.status(404).send("HumanCategory not found");
+        const humenCategorysId = req.params.id;
+        const humenCategorys = await HumanCategory.findById(humenCategorysId).populate("gender_id");
+        if (humenCategorys) {
+            res.json({ message: "humenCategorys topildi", humenCategorys });
         }
-        res.send(humanCategory);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error("Xato", error);
+        res.json({ message: "Xatolik yuz berdi" });
     }
 };
 
 const updateHumanCategory = async (req, res) => {
     try {
-        const HumanCategoryId = req.params.id;
+        const humenCategoryId = req.params.id;
         const updatedData = req.body;
 
-        const updatedHumanCategory = await HumanCategory.findByIdAndUpdate(HumanCategoryId, updatedData, {
+        const updatedhumenCategory = await HumanCategory.findByIdAndUpdate(humenCategoryId, updatedData, {
             new: true,
         });
 
-        if (!updatedHumanCategory) {
+        if (!updatedhumenCategory) {
             return res.status(404).json({
                 success: false,
-                message: "HumanCategory topilmadi.",
+                message: "humenCategory topilmadi.",
             });
         }
 
         res.json({
             success: true,
-            message: "HumanCategory ma'lumotlari yangilandi.",
-            HumanCategoryChik: updatedHumanCategory,
+            message: "humenCategory ma'lumotlari yangilandi.",
+            humenCategorys: updatedhumenCategory,
         });
     } catch (error) {
         console.error("Xato:", error);
         res.status(500).json({
             success: false,
-            message: "Server xatosi: HumanCategoryi yangilashda xato yuz berdi.",
+            message: "Server xatosi: humenCategoryni yangilashda xato yuz berdi.",
         });
     }
 };
 
 module.exports = {
-    create_HumanCategory,
-    getHumanCategory,
     getHumanCategoryById,
     updateHumanCategory,
+    create_HumanCategory,
+    getHumanCategory
 };

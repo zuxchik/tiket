@@ -4,7 +4,8 @@ const {
     getEventTypes,
     createEventType,
     getEventTypeById,
-    updateEventType } = require("../event_type/event_type.Controller");
+    updateEventType
+} = require("../event_type/event_type.Controller");
 
 /**
  * @swagger

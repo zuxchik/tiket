@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /venue_photo/create:
+ * /venue_photo/create_VenuePhoto:
  *   post:
  *     summary: Upload a new venue photo
  *     tags: [VenuePhoto]
@@ -37,7 +37,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-venuePhotoRouter.post("/create", create_VenuePhoto);
+venuePhotoRouter.post("/create_VenuePhoto", create_VenuePhoto);
 
 /**
  * @swagger

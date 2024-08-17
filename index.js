@@ -52,6 +52,9 @@ app.get("/", (req, res) => {
 const { bookingRouter } = require("./routes/booking.Route.js");
 app.use("/booking", bookingRouter);
 
+const { DiscauntRuote } = require("./routes/discaunt.Ruote.js");
+app.use("/DiscauntRuote", DiscauntRuote);
+
 const { District } = require("./routes/District.Route.js");
 app.use("/District", District);
 
@@ -97,8 +100,8 @@ app.use("/ticketRouter", ticketRouter);
 const { venuePhotoRouter } = require("./routes/venua_photo.route.js");
 app.use("/venuePhotoRouter", venuePhotoRouter);
 
-const { venueRouter } = require("./routes/venue.route.js");
-app.use("/venueRouter", venueRouter);
+const { Venue } = require("./routes/venue.Route.js");
+app.use("/Venue", Venue);
 
 const { paymentRouter } = require("./routes/payment.Route.js");
 app.use("/paymentRouter", paymentRouter);
@@ -114,6 +117,9 @@ app.use("/flatRoute", flatRoute)
 
 const { SectorRoute } = require("./routes/Sector.Route.js");
 app.use("/SectorRoute", SectorRoute)
+
+const { StatusRouter } = require("./routes/status.Route.js");
+app.use("/StatusRouter", StatusRouter)
 
 const { TicketTypeChikRoute } = require("./routes/TicketType.Route.js");
 app.use("/TicketTypeChikRoute", TicketTypeChikRoute)

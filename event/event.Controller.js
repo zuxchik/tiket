@@ -43,7 +43,7 @@ const createEvent = async (req, res) => {
 
 const getEvents = async (req, res) => {
   try {
-    const events = await Event.find();
+    const events = await Event.find().populate("event_type_id  human_category_id venue_id lang_id");
     res.send(events);
   } catch (error) {
     res.status(500).send(error.message);

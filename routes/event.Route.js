@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /event/create:
+ * /eventRouter/createEvent:
  *   post:
  *     summary: Create a new event
  *     tags: [Event]
@@ -57,11 +57,11 @@ const {
  *       "500":
  *         description: Internal server error
  */
-eventRouter.post("/create", createEvent);
+eventRouter.post("/createEvent", createEvent);
 
 /**
  * @swagger
- * /event/getEvents:
+ * /eventRouter/getEvents:
  *   get:
  *     summary: Get all events
  *     tags: [Event]
@@ -76,7 +76,7 @@ eventRouter.get("/getEvents", getEvents);
 
 /**
  * @swagger
- * /event/getEvent/{id}:
+ * /eventRouter/getEvent/{id}:
  *   get:
  *     summary: Get an event by ID
  *     tags: [Event]
@@ -100,7 +100,7 @@ eventRouter.get("/getEvent/:id", getEventById);
 
 /**
  * @swagger
- * /event/updateEvent/{id}:
+ * /eventRouter/updateEvent/{id}:
  *   put:
  *     summary: Update an event by ID
  *     tags: [Event]

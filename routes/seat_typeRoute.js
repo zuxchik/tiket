@@ -2,7 +2,7 @@ const { Router } = require("express");
 const seatTypeRouter = Router();
 const {
   create_SeatTypof,
-  getSeatTypof,
+  getSectorType,
   getSeatTypofById,
   updateSeatTypof,
 } = require("../seat_type/seat_type.controller");
@@ -16,7 +16,7 @@ const {
 
 /**
  * @swagger
- * /seat_type/create:
+ * /seatTypeRouter/create_SeatTypof:
  *   post:
  *     summary: Create a new seat type
  *     tags: [SeatType]
@@ -35,11 +35,11 @@ const {
  *       "500":
  *         description: Internal server error
  */
-seatTypeRouter.post("/create", create_SeatTypof);
+seatTypeRouter.post("/create_SeatTypof", create_SeatTypof);
 
 /**
  * @swagger
- * /seat_type/getSeatTypes:
+ * /seatTypeRouter/getSeatTypes:
  *   get:
  *     summary: Get all seat types
  *     tags: [SeatType]
@@ -50,11 +50,11 @@ seatTypeRouter.post("/create", create_SeatTypof);
  *       "500":
  *         description: Internal server error
  */
-seatTypeRouter.get("/getSeatTypes", getSeatTypof);
+seatTypeRouter.get("/getSeatTypes", getSectorType);
 
 /**
  * @swagger
- * /seat_type/getSeatType/{id}:
+ * /seatTypeRouter/getSeatType/{id}:
  *   get:
  *     summary: Get a seat type by ID
  *     tags: [SeatType]
@@ -78,7 +78,7 @@ seatTypeRouter.get("/getSeatType/:id", getSeatTypofById);
 
 /**
  * @swagger
- * /seat_type/updateSeatType/{id}:
+ * /seatTypeRouter/updateSeatType/{id}:
  *   put:
  *     summary: Update a seat type by ID
  *     tags: [SeatType]

@@ -21,7 +21,7 @@ const create_VenuePhoto = async (req, res) => {
 
 const getVenuePhoto = async (req, res) => {
     try {
-        const venuePhotos = await VenuePhotos.find();
+        const venuePhotos = await VenuePhotos.find().populate("venue_id");
         res.send(venuePhotos);
     } catch (error) {
         res.status(500).send(error.message);
@@ -31,7 +31,7 @@ const getVenuePhoto = async (req, res) => {
 const getVenuePhotoById = async (req, res) => {
     try {
         const { id } = req.params;
-        const VenuePhoto = await VenuePhotos.findById(id);
+        const VenuePhoto = await VenuePhotos.findById(id).populate("venue_id");
         if (!VenuePhoto) {
             return res.status(404).send("VenuePhoto not found");
         }

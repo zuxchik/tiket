@@ -1,86 +1,79 @@
-const { Language } = require("./lenguage.Schema");
+const { Language } = require("./lenguage.Schema")
 
-const createLanguage = async (req, res) => {
+const create_Language = async (req, res) => {
   try {
-    const { Language: LanguageName, discription } = req.body;
-    const newLanguage = new Language({ Language: LanguageName, discription });
-    await newLanguage.save();
-    res.status(201).json({ message: "Language created successfully", newLanguage });
+    const {
+      language,
+      discription
+    } = req.body;
+
+    const newlanguage = new Language({
+      language,
+      discription
+    });
+
+    await newlanguage.save();
+    res.status(201).send(newlanguage);
   } catch (error) {
-    console.error("Error creating Language:", error);
-    res.status(500).json({ message: "Server error: Unable to create Language" });
+    res.status(400).send(error.message);
   }
 };
 
-const getLanguages = async (req, res) => {
+const getLanguage = async (req, res) => {
   try {
-    const Languages = await Language.find();
-    res.json({ Languages });
+    const languages = await Language.find()
+    res.send(languages);
   } catch (error) {
-    console.error("Error fetching Languages:", error);
-    res.status(500).json({ message: "Server error: Unable to fetch Languages" });
+    res.status(500).send(error.message);
   }
 };
 
 const getLanguageById = async (req, res) => {
   try {
-    const LanguageId = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(LanguageId)) {
-      return res.status(400).json({ message: "Invalid ID format" });
-    }
-    const foundLanguage = await Language.findById(LanguageId);
-    if (foundLanguage) {
-      res.json({ foundLanguage });
-    } else {
-      res.status(404).json({ message: "Language not found" });
+    const languagesId = req.params.id;
+    const languages = await Language.findById(languagesId);
+    if (languages) {
+      res.json({ message: "languages topildi", languages });
     }
   } catch (error) {
-    console.error("Error fetching Language by ID:", error);
-    res.status(500).json({ message: "Server error: Unable to fetch Language by ID" });
+    console.error("Xato", error);
+    res.json({ message: "Xatolik yuz berdi" });
   }
 };
 
 const updateLanguage = async (req, res) => {
   try {
-    const LanguageId = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(LanguageId)) {
-      return res.status(400).json({ message: "Invalid ID format" });
-    }
+    const languageId = req.params.id;
     const updatedData = req.body;
-    const updatedLanguage = await Language.findByIdAndUpdate(LanguageId, updatedData, { new: true });
-    if (updatedLanguage) {
-      res.json({ message: "Language updated successfully", updatedLanguage });
-    } else {
-      res.status(404).json({ message: "Language not found" });
-    }
-  } catch (error) {
-    console.error("Error updating Language:", error);
-    res.status(500).json({ message: "Server error: Unable to update Language" });
-  }
-};
 
-const deleteLanguage = async (req, res) => {
-  try {
-    const LanguageId = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(LanguageId)) {
-      return res.status(400).json({ message: "Invalid ID format" });
+    const updatedlanguage = await Language.findByIdAndUpdate(languageId, updatedData, {
+      new: true,
+    });
+
+    if (!updatedlanguage) {
+      return res.status(404).json({
+        success: false,
+        message: "language topilmadi.",
+      });
     }
-    const deletedLanguage = await Language.findByIdAndDelete(LanguageId);
-    if (deletedLanguage) {
-      res.json({ message: "Language deleted successfully" });
-    } else {
-      res.status(404).json({ message: "Language not found" });
-    }
+
+    res.json({
+      success: true,
+      message: "language ma'lumotlari yangilandi.",
+      languages: updatedlanguage,
+    });
   } catch (error) {
-    console.error("Error deleting Language:", error);
-    res.status(500).json({ message: "Server error: Unable to delete Language" });
+    console.error("Xato:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server xatosi: languageni yangilashda xato yuz berdi.",
+    });
   }
 };
 
 module.exports = {
-  createLanguage,
-  getLanguages,
+  create_Language,
   getLanguageById,
-  updateLanguage,
-  deleteLanguage,
+  getLanguage,
+  updateLanguage
 };

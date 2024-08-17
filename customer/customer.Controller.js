@@ -33,7 +33,7 @@ const createCustomer = async (req, res) => {
 
 const getCustomers = async (req, res) => {
   try {
-    const customers = await Customer.find();
+    const customers = await Customer.find().populate("gender lang_id");
     res.send(customers);
   } catch (error) {
     res.status(500).send(error.message);

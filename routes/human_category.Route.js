@@ -4,7 +4,7 @@ const {
   getHumanCategoryById,
   updateHumanCategory,
   create_HumanCategory,
-  getHumanCategory,
+  getHumanCategory
 } = require("../human_category/human_category.Cotroller");
 
 /**

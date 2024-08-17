@@ -16,6 +16,6 @@ const venueSchema = new Schema({
   district_id: { type: Schema.Types.ObjectId, ref: District },
 });
 
-const VenueBek = model("Venue", venueSchema);
+const Venue = model("venue", venueSchema);
 
-module.exports = { VenueBek };
+module.exports = { Venue };

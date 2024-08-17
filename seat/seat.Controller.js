@@ -1,22 +1,24 @@
-const { SeatBek } = require("./seat.Schema");
+const { Seat } = require("./seat.Schema");
 
 const create_Seat = async (req, res) => {
     try {
         const {
-            name,
-            start_age,
-            finish_age,
-            gender
+            sector_id,
+            row_number,
+            number,
+            venue_id,
+            seat_type_id
         } = req.body;
 
-        const new_Seat = new SeatBek({
-            name,
-            start_age,
-            finish_age,
-            gender
+        const new_Seat = new Seat({
+            sector_id,
+            row_number,
+            number,
+            venue_id,
+            seat_type_id
         });
 
-        await new_Seat.save();
+        await new_Seat.save(); 
         res.status(201).send(new_Seat);
     } catch (error) {
         res.status(400).send(error.message);
@@ -25,7 +27,7 @@ const create_Seat = async (req, res) => {
 
 const getSeat = async (req, res) => {
     try {
-        const Seats = await SeatBek.find();
+        const Seats = await Seat.find().populate("sector_id venue_id seat_type_id");
         res.send(Seats);
     } catch (error) {
         res.status(500).send(error.message);
@@ -34,9 +36,9 @@ const getSeat = async (req, res) => {
 
 const getSeatById = async (req, res) => {
     try {
-        const { id } = req.params;
-        const Seat = await SeatBek.findById(id);
-        if (!Seat) {
+        const Seatsid = req.params;
+        const Seats = await Seat.findById(Seatsid).populate("sector_id venue_id seat_type_id");
+        if (!Seats) {
             return res.status(404).send("Seat not found");
         }
         res.send(Seat);
@@ -50,7 +52,7 @@ const updateSeat = async (req, res) => {
         const SeatId = req.params.id;
         const updatedData = req.body;
 
-        const updatedSeat = await SeatBek.findByIdAndUpdate(SeatId, updatedData, {
+        const updatedSeat = await Seat.findByIdAndUpdate(SeatId, updatedData, {
             new: true,
         });
 

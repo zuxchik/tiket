@@ -3,8 +3,7 @@ const {
   createGender,
   getGenders,
   getGenderById,
-  updateGender,
-  deleteGender,
+  updateGender
 } = require("../gender/gender.Controller");
 
 const genderRouter = Router();
@@ -109,30 +108,6 @@ genderRouter.get("/getGenderById/:id", getGenderById);
  *       "500":
  *         description: Internal server error
  */
-genderRouter.put("updateGender/:id", updateGender);
-
-/**
- * @swagger
- * /genderRouter/deletdeleteGender/{id}:
- *   delete:
- *     summary: Delete a gender by ID
- *     tags: [Gender]
- *     description: Delete a gender with the provided ID
- *     parameters:
- *       - in: path
- *         name: id
- *         description: ID of the gender to delete
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       "200":
- *         description: Gender deleted successfully
- *       "404":
- *         description: Gender not found
- *       "500":
- *         description: Internal server error
- */
-genderRouter.delete("/deletdeleteGender/:id", deleteGender);
+genderRouter.put("/updateGender/:id", updateGender);
 
 module.exports = { genderRouter };

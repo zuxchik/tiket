@@ -1,11 +1,10 @@
 const { Router } = require("express");
 const languageRouter = Router();
 const {
-  createLanguage,
-  getLanguages,
+  create_Language,
   getLanguageById,
-  updateLanguage,
-  deleteLanguage
+  getLanguage,
+  updateLanguage
 } = require("../lenguage/language.Controler");
 
 
@@ -18,7 +17,7 @@ const {
 
 /**
  * @swagger
- * /languages:
+ * /languageRouter/createLanguage:
  *   post:
  *     summary: Create a new language
  *     tags: [Language]
@@ -40,11 +39,11 @@ const {
  *       "500":
  *         description: Internal server error
  */
-languageRouter.post("/languages", createLanguage);
+languageRouter.post("/createLanguage", create_Language);
 
 /**
  * @swagger
- * /languages:
+ * /languageRouter/getLanguages:
  *   get:
  *     summary: Get all languages
  *     tags: [Language]
@@ -55,11 +54,11 @@ languageRouter.post("/languages", createLanguage);
  *       "500":
  *         description: Internal server error
  */
-languageRouter.get("/getLanguages", getLanguages);
+languageRouter.get("/getLanguages", getLanguage);
 
 /**
  * @swagger
- * /languages/{id}:
+ * /languageRouter/{id}:
  *   get:
  *     summary: Get a language by ID
  *     tags: [Language]
@@ -83,7 +82,7 @@ languageRouter.get("/getLanguageById/:id", getLanguageById);
 
 /**
  * @swagger
- * /languages/{id}:
+ * /languageRouter/updateLanguage/{id}:
  *   put:
  *     summary: Update a language by ID
  *     tags: [Language]
@@ -115,29 +114,5 @@ languageRouter.get("/getLanguageById/:id", getLanguageById);
  *         description: Internal server error
  */
 languageRouter.put("/updateLanguage/:id", updateLanguage);
-
-/**
- * @swagger
- * /languages/{id}:
- *   delete:
- *     summary: Delete a language by ID
- *     tags: [Language]
- *     description: Delete a language with the provided ID
- *     parameters:
- *       - in: path
- *         name: id
- *         description: ID of the language to delete
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       "200":
- *         description: Language deleted successfully
- *       "404":
- *         description: Language not found
- *       "500":
- *         description: Internal server error
- */
-languageRouter.delete("/deleteLanguage/:id", deleteLanguage);
 
 module.exports = { languageRouter };

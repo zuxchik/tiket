@@ -1,4 +1,4 @@
-const { VenueBek } = require("./venue.Schema");
+const { Venue } = require("./venue.Schema")
 
 const create_Venue = async (req, res) => {
     try {
@@ -9,21 +9,25 @@ const create_Venue = async (req, res) => {
             site,
             phone,
             venue_type_id,
-            schema
+            schema,
+            region_id,
+            district_id
         } = req.body;
 
-        const new_Venue = new VenueBek({
+        const newvenue = new Venue({
             name,
             address,
             location,
             site,
             phone,
+            schema,
             venue_type_id,
-            schema
+            region_id,
+            district_id
         });
 
-        await new_Venue.save();
-        res.status(201).send(new_Venue);
+        await newvenue.save();
+        res.status(201).send(newvenue);
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -31,8 +35,8 @@ const create_Venue = async (req, res) => {
 
 const getVenue = async (req, res) => {
     try {
-        const Venues = await VenueBek.find();
-        res.send(Venues);
+        const venues = await Venue.find().populate("region_id district_id venue_type_id");
+        res.send(venues);
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -40,43 +44,43 @@ const getVenue = async (req, res) => {
 
 const getVenueById = async (req, res) => {
     try {
-        const { id } = req.params;
-        const Venue = await VenueBek.findById(id);
-        if (!Venue) {
-            return res.status(404).send("Venue not found");
+        const venuesId = req.params.id;
+        const venues = await Venue.findById(venuesId).polygon("venue_type_id region_id district_id");
+        if (venues) {
+            res.json({ message: "venues topildi", venues });
         }
-        res.send(Venue);
     } catch (error) {
-        res.status(500).send(error.message);
+        console.error("Xato", error);
+        res.json({ message: "Xatolik yuz berdi" });
     }
 };
 
 const updateVenue = async (req, res) => {
     try {
-        const VenueId = req.params.id;
+        const venueId = req.params.id;
         const updatedData = req.body;
 
-        const updatedVenue = await VenueBek.findByIdAndUpdate(VenueId, updatedData, {
+        const updatedvenue = await Venue.findByIdAndUpdate(venueId, updatedData, {
             new: true,
         });
 
-        if (!updatedVenue) {
+        if (!updatedvenue) {
             return res.status(404).json({
                 success: false,
-                message: "Venue topilmadi.",
+                message: "venue topilmadi.",
             });
         }
 
         res.json({
             success: true,
-            message: "Venue ma'lumotlari yangilandi.",
-            VenueChik: updatedVenue,
+            message: "venue ma'lumotlari yangilandi.",
+            venues: updatedvenue,
         });
     } catch (error) {
         console.error("Xato:", error);
         res.status(500).json({
             success: false,
-            message: "Server xatosi: SeatTypofi yangilashda xato yuz berdi.",
+            message: "Server xatosi: venueni yangilashda xato yuz berdi.",
         });
     }
 };
@@ -85,5 +89,5 @@ module.exports = {
     create_Venue,
     getVenue,
     getVenueById,
-    updateVenue,
+    updateVenue
 };

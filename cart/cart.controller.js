@@ -27,7 +27,7 @@ const createCart = async (req, res) => {
 
 const getCarts = async (req, res) => {
   try {
-    const carts = await Cart.find();
+    const carts = await Cart.find().populate("ticket_id customer_id status_id");
     res.send(carts);
   } catch (error) {
     res.status(500).send(error.message);

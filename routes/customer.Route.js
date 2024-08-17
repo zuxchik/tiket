@@ -27,19 +27,29 @@ const {
  *         application/json:
  *           schema:
  *             properties:
- *               name:
- *                 type: string
- *               email:
- *                 type: string
+ *               first_name:
+ *                type: String
+ *               last_name:
+ *                type: String
  *               phone:
- *                 type: string
+ *                type: String
+ *               hashed_password:
+ *                type: String
+ *               birth_date:
+ *                type: data
+ *               email:
+ *                type: String
+ *               gender:
+ *                type: String
+ *               lang_id:
+ *                type: String
  *     responses:
  *       "201":
  *         description: Customer created successfully
  *       "500":
  *         description: Internal server error
  */
-customerRouter.post("/create", createCustomer);
+customerRouter.post("/createCustomer", createCustomer);
 
 /**
  * @swagger
@@ -101,12 +111,22 @@ customerRouter.get("/getCustomer/:id", getCustomerById);
  *           schema:
  *             type: object
  *             properties:
- *               name:
- *                 type: string
- *               email:
- *                 type: string
+ *               first_name:
+ *                type: String
+ *               last_name:
+ *                type: String
  *               phone:
- *                 type: string
+ *                type: String
+ *               hashed_password:
+ *                type: String
+ *               birth_date:
+ *                type: data
+ *               email:
+ *                type: String
+ *               gender:
+ *                type: String
+ *               lang_id:
+ *                type: String
  *     responses:
  *       "200":
  *         description: Customer updated successfully

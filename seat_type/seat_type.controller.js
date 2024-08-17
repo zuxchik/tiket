@@ -17,14 +17,15 @@ const create_SeatTypof = async (req, res) => {
     }
 };
 
-const getSeatTypof = async (req, res) => {
+const getSectorType = async (req, res) => {
     try {
-        const SeatTypofs = await SeatType.find();
-        res.send(SeatTypofs);
+        const SeatTypes = await SeatType.find();
+        res.json({ message: "SeatType typelar ro`yhati", SeatTypes });
     } catch (error) {
         res.status(500).send(error.message);
     }
 };
+
 
 const getSeatTypofById = async (req, res) => {
     try {
@@ -71,7 +72,7 @@ const updateSeatTypof = async (req, res) => {
 
 module.exports = {
     create_SeatTypof,
-    getSeatTypof,
+    getSectorType,
     getSeatTypofById,
     updateSeatTypof,
 };

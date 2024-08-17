@@ -32,7 +32,7 @@ const getStatusById = async (req, res) => {
         if (!status) {
             return res.status(404).send("Status not found");
         }
-        res.send(Status);
+        res.send(status);
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -57,7 +57,7 @@ const updateStatus = async (req, res) => {
         res.json({
             success: true,
             message: "Status ma'lumotlari yangilandi.",
-            StatussChik: updatedStatus,
+            updatedStatus: updatedStatus,
         });
     } catch (error) {
         console.error("Xato:", error);

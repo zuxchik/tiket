@@ -42,6 +42,10 @@ const {
  *               type: string
  *              schema:
  *               type: string
+ *              district_id:
+ *               type: string
+ *              region_id:
+ *               type: string
  *     responses:
  *       "201":
  *         description: Venue created successfully

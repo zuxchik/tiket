@@ -6,6 +6,17 @@ const {
   updateGender
 } = require("../gender/gender.Controller");
 
+const { genderValidation } = require("../gender/Gender.ValidetionSchema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 const genderRouter = Router();
 
 /**
@@ -36,7 +47,7 @@ const genderRouter = Router();
  *       "400":
  *         description: Bad request
  */
-genderRouter.post("/createGender", createGender);
+genderRouter.post("/createGender", ValidateSchema(genderValidation), createGender);
 
 /**
  * @swagger

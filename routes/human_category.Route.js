@@ -7,6 +7,17 @@ const {
   getHumanCategory
 } = require("../human_category/human_category.Cotroller");
 
+const { humanCategoryValidation } = require("../human_category/human_category.validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -41,7 +52,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-humanCategoryRouter.post("/create", create_HumanCategory);
+humanCategoryRouter.post("/create", ValidateSchema(humanCategoryValidation), create_HumanCategory);
 /**
  * @swagger
  * /humanCategoryRouter/getHumanCategories:

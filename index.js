@@ -58,6 +58,9 @@ app.use("/DiscauntRuote", DiscauntRuote);
 const { District } = require("./routes/District.Route.js");
 app.use("/District", District);
 
+const { DeliveryRuote } = require("./routes/delivery.Route.js");
+app.use("/DeliveryRuote", DeliveryRuote);
+
 const { venue_type } = require("./routes/venue_type.Route.js");
 app.use("/venue_type", venue_type);
 

@@ -7,6 +7,17 @@ const {
   updateCustomerCard,
 } = require("../customer_card/customer_card.Controller");
 
+const { CustomerCardValidation } = require("../customer_card/customer_card.validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -16,7 +27,7 @@ const {
 
 /**
  * @swagger
- * /customer_card/create:
+ * /customer_card/createCustomerCard:
  *   post:
  *     summary: Create a new customer card
  *     tags: [CustomerCard]
@@ -42,7 +53,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-customerCardRouter.post("/create", createCustomerCard);
+customerCardRouter.post("/createCustomerCard", ValidateSchema(CustomerCardValidation), createCustomerCard);
 
 /**
  * @swagger

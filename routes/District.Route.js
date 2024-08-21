@@ -8,6 +8,17 @@ const {
     updateDistrict,
 } = require("../discrict/discrict.Controller");
 
+const { districtValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -38,7 +49,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-District.post("/createDistrict", createDistrict);
+District.post("/createDistrict", ValidateSchema(districtValidation), createDistrict);
 
 /**
  * @swagger

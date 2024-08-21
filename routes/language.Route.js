@@ -7,6 +7,17 @@ const {
   updateLanguage
 } = require("../lenguage/language.Controler");
 
+const { languageValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 
 /**
  * @swagger
@@ -39,7 +50,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-languageRouter.post("/createLanguage", create_Language);
+languageRouter.post("/createLanguage", ValidateSchema(languageValidation), create_Language);
 
 /**
  * @swagger

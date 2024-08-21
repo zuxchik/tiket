@@ -7,6 +7,17 @@ const {
   updatePayment,
 } = require("../payment/payment.Controller");
 
+const { paymentValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -16,7 +27,7 @@ const {
 
 /**
  * @swagger
- * /payment/create:
+ * /paymentRouter/createPayment:
  *   post:
  *     summary: Create a new payment
  *     tags: [Payment]
@@ -35,11 +46,11 @@ const {
  *       "500":
  *         description: Internal server error
  */
-paymentRouter.post("/create", createPayment);
+paymentRouter.post("/createPayment", ValidateSchema(paymentValidation), createPayment);
 
 /**
  * @swagger
- * /payment/getPayments:
+ * /paymentRouter/getPayments:
  *   get:
  *     summary: Get all payments
  *     tags: [Payment]
@@ -54,7 +65,7 @@ paymentRouter.get("/getPayments", getPayments);
 
 /**
  * @swagger
- * /payment/getPayment/{id}:
+ * /paymentRouter/getPayment/{id}:
  *   get:
  *     summary: Get a payment by ID
  *     tags: [Payment]
@@ -78,7 +89,7 @@ paymentRouter.get("/getPayment/:id", getPaymentById);
 
 /**
  * @swagger
- * /payment/updatePayment/{id}:
+ * /paymentRouter/updatePayment/{id}:
  *   put:
  *     summary: Update a payment by ID
  *     tags: [Payment]

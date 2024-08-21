@@ -1,27 +1,34 @@
 const { Router } = require("express");
-const Venue = Router();
-
+const venueRouter = Router();
 const {
-    create_Venue,
-    getVenue,
-    getVenueById,
-    updateVenue
+  getVenueById,
+  updateVenue,
+  create_Venue,
+  getVenue,
 } = require("../venue/venue.controller");
+const { venueValidation } = require("../venue/venue.validetion")
 
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
 /**
  * @swagger
  * tags:
  *   name: Venue
- *   description: API endpoints for managing Venue
+ *   description: API endpoints for managing venues
  */
 
 /**
  * @swagger
- * /Venue/create_Venue:
+ * /venueRouter/create_Venue:
  *   post:
- *     summary: Create a new Venue
+ *     summary: Create a new venue
  *     tags: [Venue]
- *     description: Create a new Venue with the provided details
+ *     description: Create a new venue with the provided details
  *     requestBody:
  *       required: true
  *       content:
@@ -29,81 +36,81 @@ const {
  *           schema:
  *             properties:
  *              name:
- *               type: string
+ *                type: String
  *              address:
- *               type: string
+ *                type: String
  *              location:
- *               type: string
+ *                type: String
  *              site:
- *               type: string
+ *                type: String
  *              phone:
- *               type: string
+ *                type: String
  *              venue_type_id:
- *               type: string
+ *                type: String
  *              schema:
- *               type: string
- *              district_id:
- *               type: string
+ *                type: String
  *              region_id:
- *               type: string
+ *                type: String
+ *              district_id:
+ *                type: String
  *     responses:
  *       "201":
  *         description: Venue created successfully
  *       "500":
  *         description: Internal server error
  */
-Venue.post("/create_Venue", create_Venue);
+venueRouter.post("/create_Venue", ValidateSchema(venueValidation), create_Venue);
 
 /**
  * @swagger
- * /Venue/getVenueRoute:
+ * /venueRouter/getVenue:
  *   get:
- *     summary: Get all Venue
+ *     summary: Get all venues
  *     tags: [Venue]
- *     description: Retrieve a list of all Venue
+ *     description: Retrieve a list of all venues
  *     responses:
  *       "200":
- *         description: A successful response with a list of Venue
+ *         description: A successful response with a list of venues
  *       "500":
  *         description: Internal server error
  */
-Venue.get("/getVenueRoute", getVenue);
+venueRouter.get("/getVenue", getVenue);
 
 /**
  * @swagger
- * /Venue/getVenueById/{id}:
+ * /venueRouter/getVenueById/{id}:
  *   get:
- *     summary: Get a Venue by ID
+ *     summary: Get a venue by ID
  *     tags: [Venue]
- *     description: Retrieve a Venue by its ID
+ *     description: Retrieve a venue by its ID
  *     parameters:
  *       - in: path
  *         name: id
- *         description: ID of the Venue to retrieve
+ *         description: ID of the venue to retrieve
  *         required: true
  *         schema:
  *           type: string
  *     responses:
  *       "200":
- *         description: A successful response with the Venue details
+ *         description: A successful response with the venue details
  *       "404":
  *         description: Venue not found
  *       "500":
  *         description: Internal server error
  */
-Venue.get("/getVenueById/:id", getVenueById);
+venueRouter.get("/getVenueById/:id", getVenueById);
 
 /**
  * @swagger
- * /Venue/updateVenue/{id}:
+ * /venueRouter/updateVenue/{id}:
  *   put:
- *     summary: Update a Venue by ID
+ *     summary: Update a venue by ID
  *     tags: [Venue]
- *     description: Update a Venue with the provided ID and details
+ *     description: Update a venue with the provided ID and details
  *     parameters:
  *       - in: path
  *         name: id
- *         description: ID of the Venue to update
+ *         description: ID of the venue to update
  *         required: true
  *         schema:
  *           type: string
@@ -115,20 +122,23 @@ Venue.get("/getVenueById/:id", getVenueById);
  *             type: object
  *             properties:
  *              name:
- *               type: string
+ *                type: String
  *              address:
- *               type: string
+ *                type: String
  *              location:
- *               type: string
+ *                type: String
  *              site:
- *               type: string
+ *                type: String
  *              phone:
- *               type: string
+ *                type: String
  *              venue_type_id:
- *               type: string
+ *                type: String
  *              schema:
- *               type: string
- *
+ *                type: String
+ *              region_id:
+ *                type: String
+ *              district_id:
+ *                type: String
  *     responses:
  *       "200":
  *         description: Venue updated successfully
@@ -137,6 +147,6 @@ Venue.get("/getVenueById/:id", getVenueById);
  *       "500":
  *         description: Internal server error
  */
-Venue.put("/updateVenue/:id", updateVenue);
+venueRouter.put("/updateVenue/:id", updateVenue);
 
-module.exports = { Venue };
+module.exports = { venueRouter };

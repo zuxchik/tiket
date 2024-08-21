@@ -1,11 +1,22 @@
 const { Router } = require("express");
 const CountryChikRoute = Router();
 const {
-    create_Country,
-    getCountry,
-    getCountryById,
-    updateCountry,
+  create_Country,
+  getCountry,
+  getCountryById,
+  updateCountry,
 } = require("../CountryChik/CountryChik.Controller");
+
+const { countryValidation } = require("../Country/Country.valisetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
 
 /**
  * @swagger
@@ -35,7 +46,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-CountryChikRoute.post("/create_Country", create_Country);
+CountryChikRoute.post("/create_Country", ValidateSchema(countryValidation), create_Country);
 
 /**
  * @swagger

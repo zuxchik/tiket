@@ -7,6 +7,17 @@ const {
     updateTicket_Chik,
 } = require("../Ticket.Type/TicketType.Controller");
 
+const { ticket_typeValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -39,7 +50,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-TicketTypeChikRoute.post("/create_Ticket_Chik", create_Ticket_Chik);
+TicketTypeChikRoute.post("/create_Ticket_Chik", ValidateSchema(ticket_typeValidation), create_Ticket_Chik);
 
 /**
  * @swagger

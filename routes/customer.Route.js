@@ -7,6 +7,17 @@ const {
   updateCustomer,
 } = require("../customer/customer.Controller");
 
+const { customerValidation } = require("../customer/customer.validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -49,7 +60,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-customerRouter.post("/createCustomer", createCustomer);
+customerRouter.post("/createCustomer", ValidateSchema(customerValidation), createCustomer);
 
 /**
  * @swagger

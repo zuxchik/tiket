@@ -7,6 +7,17 @@ const {
     updateSector,
 } = require("../Sector/Sector.Controller");
 
+const { sectorValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -35,7 +46,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-SectorRoute.post("/create_Sector", create_Sector);
+SectorRoute.post("/create_Sector", ValidateSchema(sectorValidation), create_Sector);
 
 /**
  * @swagger

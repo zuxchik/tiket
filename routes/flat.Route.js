@@ -1,11 +1,22 @@
 const { Router } = require("express");
 const flatRoute = Router();
 const {
-    create_Flat,
-    getFlat,
-    getFlatById,
-    updateFlat,
+  create_Flat,
+  getFlat,
+  getFlatById,
+  updateFlat,
 } = require("../flat/flat.Controller");
+
+const { flatValidation } = require("../flat/Flat.Validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
 
 /**
  * @swagger
@@ -37,7 +48,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-flatRoute.post("/create_Flat", create_Flat);
+flatRoute.post("/create_Flat", ValidateSchema(flatValidation), create_Flat);
 
 /**
  * @swagger

@@ -7,6 +7,17 @@ const {
     updateEventType
 } = require("../event_type/event_type.Controller");
 
+const { event_typeChikValidation } = require("../event_type/event_type.validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -36,7 +47,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-eventTypeRouter.post("/createEventType", createEventType);
+eventTypeRouter.post("/createEventType", ValidateSchema(event_typeChikValidation), createEventType);
 
 /**
  * @swagger

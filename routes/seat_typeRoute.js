@@ -7,6 +7,17 @@ const {
   updateSeatTypof,
 } = require("../seat_type/seat_type.controller");
 
+const { seatTypeValidation } = require("../seat_type/seat_type.validetion")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -35,7 +46,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-seatTypeRouter.post("/create_SeatTypof", create_SeatTypof);
+seatTypeRouter.post("/create_SeatTypof", ValidateSchema(seatTypeValidation), create_SeatTypof);
 
 /**
  * @swagger

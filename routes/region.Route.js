@@ -1,11 +1,22 @@
 const { Router } = require("express");
 const RegionRouter = Router();
 const {
-    createRegion,
-    getRegion,
-    getRegionById,
-    updateRegion,
+  createRegion,
+  getRegion,
+  getRegionById,
+  updateRegion,
 } = require("../Region/region.Controller.js")
+
+const { regionValidation } = require("../Region/region.Validetion.js")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
 
 /**
  * @swagger
@@ -37,7 +48,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-RegionRouter.post("/createRegion", createRegion);
+RegionRouter.post("/createRegion", ValidateSchema(regionValidation), createRegion);
 
 /**
  * @swagger

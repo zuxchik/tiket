@@ -6,6 +6,17 @@ const {
     getTiketCheksById,
     updateTiketCheks } = require("../ticket/tucket.controller");
 
+    const { ticketValidation } = require("../Admin/Admin.valideion.Schema")
+    
+    const ValidateSchema = (schema) => (req, res, next) => {
+      const validationResult = schema.validate(req.body);
+      if (validationResult.error) {
+        return res.status(400).send(validationResult.error.details[0].message);
+      }
+      next();
+    };
+    
+
 
 /**
  * @swagger
@@ -45,7 +56,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-ticketRouter.post("/createTicketChecks", create_TiketCheks);
+ticketRouter.post("/createTicketChecks", ValidateSchema(ticketValidation), create_TiketCheks);
 
 /**
  * @swagger

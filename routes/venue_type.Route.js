@@ -7,6 +7,17 @@ const {
     updatevenueType,
 } = require("../venue_type/venue_type.Controller");
 
+const { venueTypeValidation } = require("../venue_type/venue_type.validetion")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -35,7 +46,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-venue_type.post("/createvenueType", createvenueType);
+venue_type.post("/createvenueType", ValidateSchema(venueTypeValidation), createvenueType);
 
 /**
  * @swagger

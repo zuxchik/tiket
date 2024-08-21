@@ -31,7 +31,7 @@ const createBooking = async (req, res) => {
 
 const getBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find();
+    const bookings = await Booking.find().populate("cart_id payment_method_id delivery_method_id discount_coupon_id status_id");
     res.send(bookings);
   } catch (error) {
     res.status(500).send(error.message);

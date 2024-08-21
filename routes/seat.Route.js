@@ -3,6 +3,17 @@ const seatRouter = Router();
 
 const { getSeat, create_Seat, getSeatById, updateSeat } = require("../seat/seat.Controller");
 
+const { seatValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -39,7 +50,7 @@ const { getSeat, create_Seat, getSeatById, updateSeat } = require("../seat/seat.
  *       "500":
  *         description: Internal server error
  */
-seatRouter.post("/create_Seat", create_Seat);
+seatRouter.post("/create_Seat", ValidateSchema(seatValidation), create_Seat);
 
 /**
  * @swagger

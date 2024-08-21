@@ -8,9 +8,4 @@ const AdminValidation = new Joi.object({
   is_creator: Joi.boolean().required(),
 });
 
-const AdminLogin= new Joi.object({
-  name:Joi.string().required().min(2).max(50),
-  hashed_password:Joi.string().required().min(2).max(50),
-})
-
-module.exports = {AdminValidation,AdminLogin};
+module.exports = { AdminValidation };

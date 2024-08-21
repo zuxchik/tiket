@@ -7,6 +7,17 @@ const {
   updateCustomerAddress,
 } = require("../customer_address/customer_address.Controller");
 
+const { customerAddressValidation } = require("../customer_address/customer_address.validetion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -16,7 +27,7 @@ const {
 
 /**
  * @swagger
- * /customer_address/create:
+ * /customer_address/createCustomerAddress:
  *   post:
  *     summary: Create a new customer address
  *     tags: [CustomerAddress]
@@ -43,7 +54,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-customerAddressRouter.post("/create", createCustomerAddress);
+customerAddressRouter.post("/createCustomerAddress", ValidateSchema(customerAddressValidation), createCustomerAddress);
 
 /**
  * @swagger

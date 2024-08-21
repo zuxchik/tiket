@@ -6,7 +6,15 @@ const {
   getBookingById,
   updateBooking,
 } = require("../booking/booking.Controller");
+const { bookingValidation } = require("../booking/booking.validetion.Schema")
 
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
 /**
  * @swagger
  * tags:
@@ -16,7 +24,7 @@ const {
 
 /**
  * @swagger
- * /bookingRouter/create:
+ * /bookingRouter/createBooking:
  *   post:
  *     summary: Create a new booking
  *     tags: [Booking]
@@ -32,11 +40,9 @@ const {
  *               status_id:
  *                 type: string
  *               createdAt:
- *                 type: string
  *                 format: date
  *               fineshed:
  *                 type: string
- *                 format: date
  *               payment_method_id:
  *                 type: string
  *               delivery_method_id:
@@ -49,7 +55,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-bookingRouter.post("/create", createBooking);
+bookingRouter.post("/createBooking", ValidateSchema(bookingValidation), createBooking);
 
 /**
  * @swagger
@@ -116,11 +122,9 @@ bookingRouter.get("/getBooking/:id", getBookingById);
  *               status_id:
  *                 type: string
  *               createdAt:
- *                 type: string
- *                 format: date
+ *                 type: data
  *               fineshed:
  *                 type: string
- *                 format: date
  *               payment_method_id:
  *                 type: string
  *               delivery_method_id:

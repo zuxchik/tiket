@@ -8,6 +8,17 @@ const {
     updateDiscaunt
 } = require("../discount/discaunt.Controller");
 
+const { discauntValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -38,7 +49,7 @@ const {
  *       "500":
  *         description: Internal server error
  */
-DiscauntRuote.post("/createDiscaunt", createDiscaunt);
+DiscauntRuote.post("/createDiscaunt", ValidateSchema(discauntValidation), createDiscaunt);
 
 /**
  * @swagger

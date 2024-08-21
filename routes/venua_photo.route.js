@@ -7,6 +7,17 @@ const {
   getVenuePhoto,
 } = require("../venue_photo/venue_photo.controller");
 
+const { venuePhotoValidation } = require("../Admin/Admin.valideion.Schema")
+
+const ValidateSchema = (schema) => (req, res, next) => {
+  const validationResult = schema.validate(req.body);
+  if (validationResult.error) {
+    return res.status(400).send(validationResult.error.details[0].message);
+  }
+  next();
+};
+
+
 /**
  * @swagger
  * tags:
@@ -16,7 +27,7 @@ const {
 
 /**
  * @swagger
- * /venue_photo/create_VenuePhoto:
+ * /venuePhotoRouter/create_VenuePhoto:
  *   post:
  *     summary: Upload a new venue photo
  *     tags: [VenuePhoto]
@@ -28,20 +39,21 @@ const {
  *           schema:
  *             type: object
  *             properties:
- *               photo:
+ *               venue_id:
  *                 type: string
- *                 format: binary
+ *               url:
+ *                type: string
  *     responses:
  *       "201":
  *         description: Venue photo uploaded successfully
  *       "500":
  *         description: Internal server error
  */
-venuePhotoRouter.post("/create_VenuePhoto", create_VenuePhoto);
+venuePhotoRouter.post("/create_VenuePhoto", ValidateSchema(venuePhotoValidation), create_VenuePhoto);
 
 /**
  * @swagger
- * /venue_photo/getVenuePhotos:
+ * /venuePhotoRouter/getVenuePhotos:
  *   get:
  *     summary: Get all venue photos
  *     tags: [VenuePhoto]
@@ -56,7 +68,7 @@ venuePhotoRouter.get("/getVenuePhotos", getVenuePhoto);
 
 /**
  * @swagger
- * /venue_photo/getVenuePhoto/{id}:
+ * /venuePhotoRouter/getVenuePhoto/{id}:
  *   get:
  *     summary: Get a venue photo by ID
  *     tags: [VenuePhoto]
@@ -80,7 +92,7 @@ venuePhotoRouter.get("/getVenuePhoto/:id", getVenuePhotoById);
 
 /**
  * @swagger
- * /venue_photo/updateVenuePhoto/{id}:
+ * /venuePhotoRouter/updateVenuePhoto/{id}:
  *   put:
  *     summary: Update a venue photo by ID
  *     tags: [VenuePhoto]

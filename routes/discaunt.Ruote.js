@@ -8,7 +8,7 @@ const {
     updateDiscaunt
 } = require("../discount/discaunt.Controller");
 
-const { discauntValidation } = require("../Admin/Admin.valideion.Schema")
+const { discauntValidation } = require("../discount/discaunt.Validetion")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

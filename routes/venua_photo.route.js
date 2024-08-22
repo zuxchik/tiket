@@ -7,7 +7,7 @@ const {
   getVenuePhoto,
 } = require("../venue_photo/venue_photo.controller");
 
-const { venuePhotoValidation } = require("../Admin/Admin.valideion.Schema")
+const { venuePhotoValidation } = require("../venue_photo/venue_photo.validetion")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

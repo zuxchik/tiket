@@ -7,7 +7,7 @@ const {
   updateEvent,
 } = require("../event/event.Controller");
 
-const { eventValidation } = require("../Admin/Admin.valideion.Schema")
+const { eventValidation } = require("../event/event.validetion.Schema")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

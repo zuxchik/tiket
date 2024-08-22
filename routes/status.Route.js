@@ -7,7 +7,7 @@ const {
     updateStatus,
 } = require("../status/status.Controller");
 
-const { statusValidation } = require("../Admin/Admin.valideion.Schema")
+const { statusValidation } = require("../status/status.Validetion")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

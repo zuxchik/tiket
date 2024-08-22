@@ -7,7 +7,7 @@ const {
   updatePayment,
 } = require("../payment/payment.Controller");
 
-const { paymentValidation } = require("../Admin/Admin.valideion.Schema")
+const { paymentValidation } = require("../payment/payment.Validetion")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

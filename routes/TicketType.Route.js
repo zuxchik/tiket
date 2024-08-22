@@ -7,7 +7,7 @@ const {
     updateTicket_Chik,
 } = require("../Ticket.Type/TicketType.Controller");
 
-const { ticket_typeValidation } = require("../Admin/Admin.valideion.Schema")
+const { ticket_typeValidation } = require("../Ticket.Type/TicketType.validetion.schema")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

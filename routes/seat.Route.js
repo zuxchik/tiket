@@ -3,7 +3,7 @@ const seatRouter = Router();
 
 const { getSeat, create_Seat, getSeatById, updateSeat } = require("../seat/seat.Controller");
 
-const { seatValidation } = require("../Admin/Admin.valideion.Schema")
+const { seatValidation } = require("../seat/seat.validetion.Schema")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

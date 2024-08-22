@@ -7,7 +7,7 @@ const {
     updateSector,
 } = require("../Sector/Sector.Controller");
 
-const { sectorValidation } = require("../Admin/Admin.valideion.Schema")
+const { sectorValidation } = require("../Sector/Sector.Validetion.Schema")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

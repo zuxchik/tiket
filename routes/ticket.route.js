@@ -6,7 +6,7 @@ const {
     getTiketCheksById,
     updateTiketCheks } = require("../ticket/tucket.controller");
 
-    const { ticketValidation } = require("../Admin/Admin.valideion.Schema")
+    const { ticketValidation } = require("../ticket/ticket.validetion")
     
     const ValidateSchema = (schema) => (req, res, next) => {
       const validationResult = schema.validate(req.body);

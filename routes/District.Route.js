@@ -8,7 +8,7 @@ const {
     updateDistrict,
 } = require("../discrict/discrict.Controller");
 
-const { districtValidation } = require("../Admin/Admin.valideion.Schema")
+const { districtValidation } = require("../discrict/discrict.Validetion")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);

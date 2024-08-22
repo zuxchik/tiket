@@ -8,7 +8,7 @@ const {
   updateDelivery
 } = require("../delivery/delivery.Controller");
 
-const { deliveryValidation } = require("../Admin/Admin.valideion.Schema")
+const { deliveryValidation } = require("../delivery/delivery.Validetion")
 
 const ValidateSchema = (schema) => (req, res, next) => {
   const validationResult = schema.validate(req.body);
